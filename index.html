@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ErectogenX</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* DARK THEME PALETTE */
+            --bg: #0f1115;
+            --card: #151821;
+            --text: #f2f3f5;
+            --muted: #a2a8b4;
+            --brand: #27ae60;
+            --brand-2: #2ecc71;
+            --accent: #5aa3ff;
+            --line: #232839;
+            --star: #f7b731;
+            --success: #27ae60;
+            --danger: #ef4444;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-xs: 6px;
+            --container: 1100px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: radial-gradient(1200px 600px at 50% -200px, #171b26 0%, #0f1115 55%) no-repeat,
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: clamp(14px, 1.6vw, 16px);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ATTENTION BAR */
+        .attention-bar {
+            background: linear-gradient(90deg, #10131a, #0c0f15);
+            color: #fff;
+            text-align: center;
+            padding: 10px 8px;
+            font-weight: 600;
+            font-size: clamp(12px, 2.8vw, 14px);
+            border-bottom: 1px solid #212636;
+        }
+
+        .attention-bar .date-badge {
+            background: #ffd60a;
+            color: #111;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-left: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* VIDEO */
+        .video-section {
+            background: var(--card);
+            box-shadow: var(--shadow);
+            margin: 18px auto 24px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .video-wrap {
+            padding: 16px
+        }
+
+        vturb-smartplayer,
+        .video-wrap>* {
+            max-width: 100%
+        }
+
+        .watching {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .watching-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: inline-block;
+            box-shadow: 0 0 0 6px rgba(34, 197, 94, .12);
+        }
+
+        /* COMMENTS */
+        .comments {
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin: 24px 0 40px;
+            border: 1px solid var(--line);
+        }
+
+        .comments h2 {
+            font-size: clamp(18px, 3.4vw, 20px);
+            margin: 0 0 12px;
+            color: white;
+        }
+
+        .comment {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            gap: 10px;
+            padding: 12px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .comment:first-of-type {
+            border-top: 0
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #20263a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #e2e6ef;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid #2a3046;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .bubble {
+            background: #e5e5e5;
+            border: 1px solid #252b40;
+            border-radius: 16px;
+            padding: 10px 12px;
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 6px;
+            color: #000000;
+        }
+
+        .text {
+            font-size: 14px;
+            margin-top: 4px;
+            color: #000000;
+        }
+
+        .meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 6px 0 0 4px;
+            font-size: 12px;
+            color: var(--muted);
+            flex-wrap: wrap;
+        }
+
+        .meta a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none
+        }
+
+        .meta a:hover {
+            text-decoration: underline
+        }
+
+        .likes {
+            background: #0f1320;
+            border: 1px solid #2a3148;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+            color: #cfd6e6;
+        }
+
+        .like-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4e8fff;
+            display: inline-block
+        }
+
+        .reply-list {
+            margin-left: 50px;
+            margin-top: 8px
+        }
+
+        .reply .avatar {
+            width: 32px;
+            height: 32px
+        }
+
+        .reply .bubble {
+            border-radius: 14px
+        }
+
+        .actions-row {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .stars {
+            color: var(--star);
+            letter-spacing: 1px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        /* GENERIC BUTTON */
+        .btn-primary {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            background: linear-gradient(180deg, #3b7cff, #2d5fe6);
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: 10px;
+            transition: transform .05s ease, filter .2s ease, box-shadow .2s ease;
+            box-shadow: 0 10px 24px rgba(45, 95, 230, .25);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px)
+        }
+
+        .btn-primary[disabled] {
+            opacity: .6;
+            cursor: not-allowed
+        }
+
+        /* RESPONSIVE */
+        @media (max-width:680px) {
+            .container {
+                padding: 0 12px
+            }
+
+            .video-section {
+                margin: 12px 0 16px;
+                border-radius: var(--radius-sm)
+            }
+
+            .video-wrap {
+                padding: 12px
+            }
+
+            .bubble {
+                padding: 10px
+            }
+
+            .reply-list {
+                margin-left: 38px
+            }
+
+            .comment {
+                grid-template-columns: 36px 1fr
+            }
+
+            .avatar {
+                width: 36px;
+                height: 36px
+            }
+
+            .attention-bar {
+                padding: 8px 10px
+            }
+
+            .likes {
+                padding: 2px 6px
+            }
+        }
+
+        @media (max-width:420px) {
+            body {
+                font-size: 13.5px
+            }
+
+            .attention-bar {
+                font-size: 12px
+            }
+
+            .video-wrap {
+                padding: 10px
+            }
+
+            .comments {
+                padding: 12px;
+                margin: 16px 0 28px
+            }
+
+            .comments h2 {
+                margin-bottom: 8px
+            }
+
+            .comment {
+                grid-template-columns: 32px 1fr;
+                gap: 8px;
+                padding: 10px 0
+            }
+
+            .avatar {
+                width: 32px;
+                height: 32px
+            }
+
+            .reply-list {
+                margin-left: 34px
+            }
+
+            .bubble {
+                border-radius: 12px;
+                padding: 8px 10px
+            }
+
+            .name,
+            .text {
+                font-size: 13px
+            }
+
+            .meta {
+                font-size: 11.5px;
+                gap: 8px
+            }
+
+            .btn-primary {
+                width: 100%;
+                padding: 12px
+            }
+
+            .likes {
+                font-size: 11.5px
+            }
+
+            .attention-bar .date-badge {
+                margin-left: 6px;
+                padding: 2px 6px
+            }
+        }
+        /* === FACEBOOK-LIKE COMMENTS THEME === */
+.comments {
+  background: #fff;                 /* card branco */
+  border: 1px solid #e4e6eb;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  border-radius: 8px;
+  color: #1c1e21;
+}
+
+.comments h2 {
+  color: #1c1e21;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.comment {
+  grid-template-columns: 48px 1fr;  /* avatar maior */
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid #e4e6eb;
+}
+
+.comment:first-of-type { border-top: 0; }
+
+.avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #f0f2f5;
+  overflow: hidden;
+}
+
+.reply .avatar { width: 36px; height: 36px; }
+
+/* remove “bolha” – no print é texto plano */
+.bubble {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.name {
+  color: #1877f2;                  /* azul facebook */
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-right: 6px;
+}
+
+.text {
+  color: #1c1e21;
+  font-size: 14.5px;
+  margin-top: 2px;
+}
+
+/* linha/ recuo de respostas */
+.reply-list { margin-left: 56px; position: relative; }
+.reply-list::before {
+  content: "";
+  position: absolute;
+  left: -20px; top: 0; bottom: 8px;
+  width: 2px; background: #e4e6eb; border-radius: 2px;
+}
+
+/* meta (Like · Reply · tempo · likes) */
+.meta {
+  color: #65676b;
+  font-size: 13px;
+  margin-top: 4px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+
+/* links Like/Reply em estilo fb */
+.meta a {
+  color: #65676b;
+  font-weight: 600;
+  text-decoration: none;
+}
+.meta a:hover { text-decoration: underline; }
+
+/* contador de curtidas com ícone */
+.likes {
+  background: transparent;
+  border: 0;
+  color: #65676b;
+  padding: 0;
+  gap: 6px;
+  font-weight: 600;
+}
+.like-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #1877f2;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: none;
+}
+/* polegar branco dentro do círculo azul */
+.like-dot::after {
+  content: "👍";
+  font-size: 11px;
+  line-height: 1;
+  color: #fff;
+}
+
+/* estrelas dos reviews ficam discretas como selo */
+.stars {
+  color: #f7b731;
+  font-size: 12px;
+  letter-spacing: .5px;
+  margin-left: 4px;
+}
+
+/* responsivo, aproximando o espaçamento do print */
+@media (max-width:680px){
+  .comment{ grid-template-columns:40px 1fr; padding:12px 0; }
+  .avatar{ width:40px; height:40px; }
+  .reply .avatar{ width:32px; height:32px; }
+  .reply-list{ margin-left:44px; }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ATTENTION BAR -->
+    <div class="attention-bar">
+        Diese Präsentation ist nur bis <span class="date-badge">16.09.2025</span> verfügbar
+    </div>
+
+    <div class="container">
+
+        <!-- VIDEO -->
+        <section class="video-section">
+            <div class="video-wrap">
+                <vturb-smartplayer id="vid-691cffd2f22d64b385596f1c" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/c1f53d27-913d-4412-b319-9c4aada026f6/players/691cffd2f22d64b385596f1c/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+                <div class="watching">
+                    <span class="watching-dot"></span>
+                    <span><strong>1.2k</strong> sehen gerade zu</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOMMENTARE -->
+        <section class="comments" id="comments">
+            <h2>Kommentare</h2>
+
+            <!-- Kommentar 1 (male) -->
+            <div class="comment">
+                <div class="avatar" aria-hidden="true"><img src="./assets/p1.jpg" alt=""></div>
+                <div>
+                    <div class="bubble">
+                        <span class="name">Leon Becker</span>
+                        <span class="stars" aria-label="5 Sterne">★★★★★</span>
+                        <div class="text">Ausgezeichnet! Ich benutze es seit einem Monat und die Ergebnisse sind
+                            großartig. Mein Selbstvertrauen ist zurück und mein Intimleben hat sich stark verbessert.
+                        </div>
+                    </div>
+                    <div class="meta">
+                        <div class="actions-row">
+                            <a href="javascript:void(0)">Gefällt mir</a> ·
+                            <a href="javascript:void(0)">Antworten</a>
+                        </div>
+                        ·
+                        <span>vor 1 Std.</span>
+                        <span class="likes"><span class="like-dot"></span> 89</span>
+                    </div>
+
+                    <div class="reply-list">
+                        <div class="comment reply">
+                            <div class="avatar" aria-hidden="true"><img src="./assets/p2.jpeg" alt=""></div>
+                            <div>
+                                <div class="bubble">
+                                    <span class="name">Sabine Köhler</span> <span class="pill"
+                                        style="background:#103c24;color:#7ff0a6;border:1px solid #1f5a3a;padding:2px 8px;border-radius:999px;font-weight:700;">Spezialistin</span>
+                                    <div class="text">Danke fürs Teilen, Leon! Es freut mich, dass Sie gute Ergebnisse
+                                        erzielt haben 😊</div>
+                                </div>
+                                <div class="meta">
+                                    <a href="javascript:void(0)">Gefällt mir</a> · <a
+                                        href="javascript:void(0)">Antworten</a> · <span>vor 45 Min.</span> <span
+                                        class="likes"><span class="like-dot"></span> 12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Kommentar 2 (male) -->
+            <div class="comment">
+                <div class="avatar" aria-hidden="true"><img src="./assets/p3.jpg" alt=""></div>
+                <div>
+                    <div class="bubble">
+                        <span class="name">Jonas Wagner</span>
+                        <div class="text">Sehr gut! Ich habe schon in der ersten Woche Verbesserungen bemerkt. Einziger
+                            Nachteil ist der Preis, aber die Qualität macht es wett.</div>
+                    </div>
+                    <div class="meta">
+                        <a href="javascript:void(0)">Gefällt mir</a> · <a href="javascript:void(0)">Antworten</a> ·
+                        <span>vor 2 Std.</span> <span class="likes"><span class="like-dot"></span> 34</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kommentar 3 (male) -->
+            <div class="comment">
+                <div class="avatar" aria-hidden="true"><img src="./assets/p4.jpg" alt=""></div>
+                <div>
+                    <div class="bubble">
+                        <span class="name">Paul Schneider</span>
+                        <div class="text">Das Produkt funktioniert wirklich! Bessere Leistung und mehr Energie. Ich habe
+                            es bereits meinen Freunden empfohlen.</div>
+                    </div>
+                    <div class="meta">
+                        <a href="javascript:void(0)">Gefällt mir</a> · <a href="javascript:void(0)">Antworten</a> ·
+                        <span>vor 3 Std.</span> <span class="likes"><span class="like-dot"></span> 21</span>
+                    </div>
+
+                    <div class="reply-list">
+                        <div class="comment reply">
+                            <div class="avatar" aria-hidden="true"><img src="./assets/p5.jpg" alt=""></div>
+                            <div>
+                                <div class="bubble">
+                                    <span class="name">Felix Weber</span>
+                                    <div class="text">Welche Dosierung empfehlen Sie? Ich fange gerade erst an.</div>
+                                </div>
+                                <div class="meta">
+                                    <a href="javascript:void(0)">Gefällt mir</a> · <a
+                                        href="javascript:void(0)">Antworten</a> · <span>vor 1 Std.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment reply">
+                            <div class="avatar" aria-hidden="true"><img src="./assets/p6.jpeg" alt=""></div>
+                            <div>
+                                <div class="bubble">
+                                    <span class="name">Paul Schneider</span>
+                                    <div class="text">Ich verwende die Dosierung laut Etikett. Ergebnisse nach 3–4
+                                        Tagen. Befolgen Sie die Anweisungen und konsultieren Sie im Zweifel einen
+                                        Fachmann.</div>
+                                </div>
+                                <div class="meta">
+                                    <a href="javascript:void(0)">Gefällt mir</a> · <a
+                                        href="javascript:void(0)">Antworten</a> · <span>vor 58 Min.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('spinBtn');
+            let spinning = false;
+            btn?.addEventListener('click', () => {
+                if (spinning) return;
+                spinning = true;
+                btn.textContent = 'Dreht...';
+                setTimeout(() => {
+                    btn.textContent = 'Glückwunsch! Rabatt angewendet';
+                    btn.disabled = true;
+                }, 1600);
+            });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            const badge = document.querySelector('.date-badge');
+            if (!badge) return;
+
+            function formatDE(d) {
+                return new Intl.DateTimeFormat('de-DE', {
+                    day: '2-digit', month: '2-digit', year: 'numeric'
+                }).format(d);
+            }
+
+            function updateBadge() {
+                const now = new Date();
+                badge.textContent = formatDE(now);
+            }
+
+            // Atualiza já
+            updateBadge();
+
+            // Programa a próxima atualização na virada do dia
+            (function scheduleMidnightUpdate() {
+                const now = new Date();
+                const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+                const msUntilMidnight = midnight - now;
+                setTimeout(() => {
+                    updateBadge();
+                    // depois da primeira, atualiza todo dia
+                    setInterval(updateBadge, 24 * 60 * 60 * 1000);
+                }, msUntilMidnight);
+            })();
+        })();
+    </script>
+
+
+</body>
+
+</html>
